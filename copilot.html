@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Multi-Method Payment Gateway</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+}
+
+.container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+}
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #333;
+}
+
+.tabs {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+}
+
+.tab {
+      flex: 1;
+      padding: 0.75rem;
+      text-align: center;
+      background: #eee;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 0 0.25rem;
+      transition: background 0.3s;
+}
+
+.tab.active {
+      background: #003366;
+      color: #fff;
+}
+
+.form-group {
+      margin-bottom: 1rem;
+}
+
+.form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+}
+
+.form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+}
+
+
+.btn {
+      width: 100%;
+      padding: 0.75rem;
+      background:#003366;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+}
+
+.payment-form {
+      display: none;
+}
+
+.payment-form.active {
+      display: block;
+}
+
+    @media (max-width: 480px) {
+.tabs {
+        flex-direction: column;
+}
+
+.tab {
+        margin: 0.25rem 0;
+}
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Choose Payment Method</h2>
+    <div class="tabs">
+      <div class="tab active" data-method="card">Card</div>
+      <div class="tab" data-method="paypal">PayPal</div>
+      <div class="tab" data-method="bank">Bank Transfer</div>
+    </div>
+
+    <!-- Card Payment Form -->
+    <form class="payment-form active" id="card">
+      <div class="form-group">
+        <label>Cardholder Name</label>
+        <input type="text" placeholder="John Doe" required />
+      </div>
+      <div class="form-group">
+        <label>Card Number</label>
+        <input type="text" placeholder="1234 5678 9012 3456" required />
+      </div>
+      <div class="form-group">
+        <label>Expiry Date</label>
+        <input type="text" placeholder="MM/YY" required />
+      </div>
+      <div class="form-group">
+        <label>CVV</label>
+        <input type="password" placeholder="123" required />
+      </div>
+      <button class="btn">Pay with Card</button>
+
+    </form>
+
+    <!-- PayPal Form -->
+    <form class="payment-form" id="paypal">
+      <div class="form-group">
+        <label>PayPal Email</label>
+        <input type="email" placeholder="you@example.com" required />
+      </div>
+      <button class="btn">Pay with PayPal</button>
+    </form>
+
+    <!-- Bank Transfer Form -->
+    <form class="payment-form" id="bank">
+      <div class="form-group">
+        <label>Account Holder Name</label>
+        <input type="text" placeholder="John Doe" required />
+      </div>
+      <div class="form-group">
+        <label>Bank Name</label>
+        <input type="text" placeholder="Bank of Example" required />
+      </div>
+      <div class="form-group">
+        <label>Account Number</label>
+        <input type="text" placeholder="1234567890" required />
+      </div>
+      <div class="form-group">
+
+
+
+
+
+        <label>IFSC Code</label>
+        <input type="text" placeholder="EXAMP00123" required />
+      </div>
+      <button class="btn">Pay via Bank Transfer</button>
+    </form>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const forms = document.querySelectorAll('.payment-form');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and forms
+        tabs.forEach(t => t.classList.remove('active'));
+        forms.forEach(f => f.classList.remove('active'));
+
+        // Add active class to selected tab and form
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.method).classList.add('active');
+});
+});
+  </script>
+</body>
+</html>
