@@ -487,8 +487,19 @@ box-shadow: 10px 10px 10px rgb(34, 34, 34);
 }
 
 
+.section-title {
+      text-align: center;
+      margin: 3rem 0 2rem;
+      font-weight: bold;
+      font-size: 2rem;
+      color: #003366;
+}
 
 
+#contact .btn-primary {
+      background-color: #003366;
+      border: none;
+}
 
 
 
